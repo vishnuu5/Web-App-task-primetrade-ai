@@ -2,6 +2,25 @@
 
 A full-stack web application built with React.js (Vite) for the frontend and Node.js (Express) with MongoDB for the backend. This application includes user authentication, profile management, and comprehensive CRUD operations for task management.
 
+## Production Environment Configuration
+
+Ensure these environment variables are set during deployment:
+
+### Backend (`backend`)
+- `MONGODB_URI` — MongoDB connection string
+- `JWT_SECRET` — secret used to sign JWT tokens
+- `CLIENT_URL` — the frontend’s deployed origin (e.g. `https://web-app-task-primetrade-ai.vercel.app`)
+
+### Frontend (`frontend`)
+- `VITE_API_URL` — backend base URL (e.g. `https://web-app-task-primetrade-ai-backend.onrender.com`)
+
+## Dev vs Production API Routing
+
+- In development, the Vite dev server proxies requests from `/api/*` to the backend at `http://localhost:5000`.
+- In production, the frontend uses `VITE_API_URL` and a shared axios client that automatically removes the leading `/api` from request paths.
+
+No code changes are required to switch environments; set the env vars appropriately.
+
 ## Features
 
 ### Frontend

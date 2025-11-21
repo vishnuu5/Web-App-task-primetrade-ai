@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../api/client";
 import Navbar from "../components/Navbar";
 import TaskForm from "../components/TaskForm";
 import TaskCard from "../components/TaskCard";
@@ -28,7 +28,7 @@ export default function Dashboard() {
 
   const fetchTasks = async () => {
     try {
-      const response = await axios.get("/api/tasks", {
+      const response = await api.get("/api/tasks", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setTasks(response.data.tasks);
@@ -67,11 +67,11 @@ export default function Dashboard() {
     setLoading(true);
     try {
       if (editingTask) {
-        await axios.put(`/api/tasks/${editingTask._id}`, formData, {
+        await api.put(`/api/tasks/${editingTask._id}`, formData, {
           headers: { Authorization: `Bearer ${token}` },
         });
       } else {
-        await axios.post("/api/tasks", formData, {
+        await api.post("/api/tasks", formData, {
           headers: { Authorization: `Bearer ${token}` },
         });
       }
@@ -89,7 +89,7 @@ export default function Dashboard() {
     if (!window.confirm("Are you sure you want to delete this task?")) return;
 
     try {
-      await axios.delete(`/api/tasks/${taskId}`, {
+      await api.delete(`/api/tasks/${taskId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchTasks();

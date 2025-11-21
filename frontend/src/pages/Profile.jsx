@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../api/client";
 import Navbar from "../components/Navbar";
 
 export default function Profile() {
@@ -23,7 +23,7 @@ export default function Profile() {
 
   const fetchProfile = async () => {
     try {
-      const response = await axios.get("/api/auth/profile", {
+      const response = await api.get("/api/auth/profile", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProfile(response.data.user);
@@ -54,7 +54,7 @@ export default function Profile() {
     setSaving(true);
     setMessage("");
     try {
-      await axios.put("/api/auth/profile", formData, {
+      await api.put("/api/auth/profile", formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProfile({ ...profile, ...formData });

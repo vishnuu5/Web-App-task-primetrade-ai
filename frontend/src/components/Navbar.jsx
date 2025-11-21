@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Menu, X } from "lucide-react"; // <-- Lucide Icons
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -16,8 +16,6 @@ export default function Navbar() {
   return (
     <nav className="bg-dark text-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-
-        {/* Left Section */}
         <div className="flex items-center gap-8">
           <Link to="/dashboard" className="text-2xl font-bold text-primary">
             TaskApp
@@ -33,7 +31,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Desktop User Info */}
         <div className="hidden md:flex items-center gap-4">
           <span className="text-gray-300">Welcome, {user.name || "User"}</span>
           <button
@@ -44,13 +41,16 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Menu Toggle */}
         <div className="md:hidden">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="text-white p-2"
           >
-            {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {menuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
       </div>
