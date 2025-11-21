@@ -64,7 +64,7 @@ No code changes are required to switch environments; set the env vars appropriat
 ## Deployment Task
 
 **VIew Project**
-[View project]()
+[View project](https://web-app-task-primetrade-ai.vercel.app)
 
 ## Gir Clone
 
